@@ -1,5 +1,16 @@
+#Создание словаря
 def alpha(text):
-	return text
+#tuple(i for i in set(j for j in text+))
+	text+='йцукенгшщзхъёфывапролджэячсмитьбюqwertyuiopasdfghjklzxcvbnm'
+	alphabet=list()
+	for i in text:
+		t=True
+		for j in alphabet:
+			if i==j:
+				t=False
+		if t:
+			alphabet.append(i)
+	return tuple(alphabet)
 
 #Ввод данных
 #key=(int(i) for i in input())
@@ -10,7 +21,7 @@ for i in nom:
 patch=[(i[0],i[1]) for i in input().split()]
 text=input()
 n=len(text)
-alphabet=tuple(i for i in set(j for j in text+'йцукенгшщзхъёфывапролджэячсмитьбюqwertyuiopasdfghjklzxcvbnm'))
+alphabet=alpha(text)
 text=list(text)
 
 #Коммутационная панель
@@ -18,24 +29,27 @@ def panel(text):
 	for i in patch:
 		if i[0]==text:
 			return i[1]
+	return text
 
 #Роторы
 def there(inp,shift):
-	return panel(alphabet[(int(alphabet.index(inp)+shift)%len(alphabet))])
+	return alphabet[(int(alphabet.index(inp)+shift)%len(alphabet))]
 
 def here(inp,shift):
-	return panel(alphabet[(int(alphabet.index(inp)-shift)%len(alphabet))])
+	return alphabet[(int(alphabet.index(inp)-shift)%len(alphabet))]
 
-for i in key:
-	for j in range(n):
-		text[j]=there(text[j],i)
+for i in range(n):
+	for j in key:
+		text[i]=there(text[i],j)
 #Рефлектор
-for j in range(n//2):
-	text[j],text[n-1-j]=text[n-1-j],text[j]
+for i in range(n//2):
+	text[i],text[n-1-i]=text[n-1-i],text[i]
 #Изменить структуру валов / роторов и поставить here
-for i in key[::-1]:
-	for j in range(n):
-		text[j]=there(text[j],i)
+for i in range(n):
+	for j in key[::-1]:
+		text[i]=there(text[i],j)
+for i in range(n):
+	text[i]=panel(text[i])
 
 for i in text:
 	print(i,end='')
