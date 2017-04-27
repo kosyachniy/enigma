@@ -31,10 +31,9 @@ def panel(text):
 
 #Роторы
 def there(inp,shift):
-	return alphabet[(int(alphabet.index(inp)+shift)%len(alphabet))]
+	return alphabet[(alphabet.index(inp)+shift)%len(alphabet)]
 def here(inp,shift):
-#!Правильно ли работает в отрицательных числах
-	return alphabet[(int(alphabet.index(inp)-shift)%len(alphabet))]
+	return alphabet[(alphabet.index(inp)-shift)%len(alphabet)]
 
 for i in range(n):
 #Обход роторов в одну сторону
