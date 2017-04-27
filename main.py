@@ -1,12 +1,11 @@
 #Создание словаря
 def alpha(text):
-#tuple(i for i in set(j for j in text+))
-#Ошибка приводит к выводу крайних знаков алфавита после рефлектора
 	text='йцукенгшщзхъёфывапролджэячсмитьбюqwertyuiopasdfghjklzxcvbnm'+text
 	alphabet=list()
 	for i in text:
 		if not any(i==j for j in alphabet):
 			alphabet.append(i)
+	alphabet.sort()
 	return tuple(alphabet)
 
 #Ввод данных
