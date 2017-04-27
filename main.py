@@ -22,6 +22,7 @@ patch=[(i[0],i[1]) for i in input().split()]
 text=input()
 n=len(text)
 alphabet=alpha(text)
+m=len(alphabet)
 text=list(text)
 
 #Коммутационная панель
@@ -42,13 +43,10 @@ for i in range(n):
 	for j in key:
 		text[i]=there(text[i],j)
 #Рефлектор
-for i in range(n//2):
-	text[i],text[n-1-i]=text[n-1-i],text[i]
+	text[i]=alphabet[m-1-alphabet.index(text[i])]
 #Изменить структуру валов / роторов и поставить here
-for i in range(n):
 	for j in key[::-1]:
 		text[i]=there(text[i],j)
-for i in range(n):
 	text[i]=panel(text[i])
 
 for i in text:
