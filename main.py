@@ -37,14 +37,15 @@ def here(inp,shift):
 
 for i in range(n):
 #Обход роторов в одну сторону
+	word=text[i]
 	for j in key:
-		text[i]=there(text[i],j)
+		word=there(word,j)
 #Рефлектор
-	text[i]=alphabet[m-1-alphabet.index(text[i])]
+	word=alphabet[m-1-alphabet.index(word)]
 #Обход роторов в обратную сторону
 	for j in key[::-1]:
-		text[i]=here(text[i],j)
-	text[i]=panel(text[i])
+		word=here(word,j)
+	text[i]=panel(word)
 
 for i in text:
 	print(i,end='')
