@@ -1,14 +1,11 @@
 #Создание словаря
 def alpha(text):
 #tuple(i for i in set(j for j in text+))
-	text+='йцукенгшщзхъёфывапролджэячсмитьбюqwertyuiopasdfghjklzxcvbnm'
+#Ошибка приводит к выводу крайних знаков алфавита после рефлектора
+	text='йцукенгшщзхъёфывапролджэячсмитьбюqwertyuiopasdfghjklzxcvbnm'+text
 	alphabet=list()
 	for i in text:
-		t=True
-		for j in alphabet:
-			if i==j:
-				t=False
-		if t:
+		if not any(i==j for j in alphabet):
 			alphabet.append(i)
 	return tuple(alphabet)
 
@@ -35,7 +32,6 @@ def panel(text):
 #Роторы
 def there(inp,shift):
 	return alphabet[(int(alphabet.index(inp)+shift)%len(alphabet))]
-
 def here(inp,shift):
 	return alphabet[(int(alphabet.index(inp)-shift)%len(alphabet))]
 
@@ -44,9 +40,9 @@ for i in range(n):
 		text[i]=there(text[i],j)
 #Рефлектор
 	text[i]=alphabet[m-1-alphabet.index(text[i])]
-#Изменить структуру валов / роторов и поставить here
+#Изменить структуру валов / роторов
 	for j in key[::-1]:
-		text[i]=there(text[i],j)
+		text[i]=here(text[i],j)
 	text[i]=panel(text[i])
 
 for i in text:
