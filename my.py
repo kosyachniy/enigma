@@ -55,11 +55,8 @@ def my(text,alphabet,n,m):
 			st+=bin(i)
 		st=debin(st)
 		for i in range(len(st)):
-			st[i]=alphabet[st[i]]
+#!Проблема с превышением словаря -> de(text,m-1,m)
+			st[i]=alphabet[st[i]%m]
 		return st
 
-	new=''
-	for i in ass(ass(text)):
-		new+=i
-
-	return new
+	return ass(ass(text))
