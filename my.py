@@ -15,30 +15,30 @@ def my(text,alphabet,n,m):
 			i-=1
 		return x
 
-	def de(text):
-		j=1
+	def de(text,di):
+		j=text[0]
 		num=0
 		x=[]
-		text.append((text[len(text)-1]+1)%2)
+		text.append((text[len(text)-1]+1)%di)
 		for i in text:
 			if i==j:
 				if num>=m:
-					x.append(num)
+					x.append(num-1)
 					num=1
 				else:
 					num+=1
 			else:
-				x.append(num)
+				x.append(num-1)
 				num=1
-				j=(j+1)%2
+				j=(j+1)%di
 		return x
 
-	st=[1]
+	st=[0]
 	for i in text:
 		st+=bin(i)
-	st=de(st)
+	st=de(st,2)
 	new=''
 	for i in st:
-		new+=alphabet[i-1]
+		new+=alphabet[i]
 
 	return new
