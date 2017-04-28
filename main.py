@@ -6,11 +6,8 @@
 from enigma import enigma
 
 #Создание словаря
-def alpha(text):
 #1234567890йцукенгшщзхъёфывапролджэячсмитьбю
-	alphabet=list(i for i in set(j for j in text+'qwertyuiopasdfghjklzxcvbnm'))
-	alphabet.sort()
-	return tuple(alphabet)
+alpha=lambda text: tuple(sorted([i for i in set(j for j in text+'qwertyuiopasdfghjklzxcvbnm')]))
 
 #Ввод данных
 #!key=(int(i) for i in input())
