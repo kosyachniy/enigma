@@ -25,9 +25,11 @@ alphabet=alpha(text)
 m=len(alphabet)
 text=list(text)
 
+def write(text):
+	for i in text:
+		print(i,end='')
+	print()
 text=enigma(text,key,alphabet,n,m,patch)
-for i in text:
-	print(i,end='')
-print()
+write(text)
 text=my(text,alphabet,n,m)
-print(text)
+write(text)

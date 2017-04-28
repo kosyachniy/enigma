@@ -15,26 +15,25 @@ def my(text,alphabet,n,m):
 			i-=1
 		return x
 
-	def de(text,di,ma):
+#Добавляет лишний бит 0 в начале
+	def debin(text):
 		x=[]
-		'''
-		j=text[0]
+		j=0
+		text=[0]+text
 		num=0
-		text.append((text[len(text)-1]+1)%di)
+		text.append((text[len(text)-1]+1)%2)
 		for i in text:
 			if i==j:
-				if num>=ma:
-					x.append(num-1) !!!
-					num=1
-					!!!
-				else:
-					num+=1
+				num+=1
 			else:
-				x.append(num-1) !!!
+				x.append(num-1)
 				num=1
-				j=(j+1)%di
-		'''
+				j=(j+1)%2
+		return x
 
+#Добавляет 1 размерность | Есть ограничение максимальным количеством подряд | С любыми строками
+	def de(text,di,ma):
+		x=[]
 		j=0
 		while j<=len(text)-1:
 			for i in range(di):
@@ -48,15 +47,19 @@ def my(text,alphabet,n,m):
 						k+=1
 					j+=1
 				x.append(k)
-
 		return x
 
-	st=[0]
-	for i in text:
-		st+=bin(i)
-	st=de(de(st,2,m),m-1,m)
+	def ass(text):
+		st=[]
+		for i in text:
+			st+=bin(i)
+		st=debin(st)
+		for i in range(len(st)):
+			st[i]=alphabet[st[i]]
+		return st
+
 	new=''
-	for i in st:
-		new+=alphabet[i]
+	for i in ass(ass(text)):
+		new+=i
 
 	return new
