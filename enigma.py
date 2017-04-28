@@ -12,8 +12,10 @@ def enigma(text,key,alphabet,n,m,patch=''):
 
 #Роторы
 #!Автоматический поворот роторов
-	there=lambda word,shift: alphabet[(alphabet.index(word)+shift)%m]
-	here=lambda word,shift: alphabet[(alphabet.index(word)-shift)%m]
+	def there(word,shift):
+		return alphabet[(alphabet.index(word)+shift)%m]
+	def here(word,shift):
+		return alphabet[(alphabet.index(word)-shift)%m]
 
 	for i in range(n):
 #Обход роторов в одну сторону

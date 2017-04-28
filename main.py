@@ -4,6 +4,7 @@
 #!При использовании особого словаря - дешифровка невозмона
 
 from enigma import enigma
+from my import my
 
 #Создание словаря
 #1234567890йцукенгшщзхъёфывапролджэячсмитьбю
@@ -24,11 +25,6 @@ alphabet=alpha(text)
 m=len(alphabet)
 text=list(text)
 
-text=enigma(text,key,alphabet,n,m,patch)
-for i in text:
-	print(alphabet.index(i),end='')
-print()
-
-for i in text:
+for i in my(enigma(text,key,alphabet,n,m,patch),alphabet,n,m):
 	print(i,end='')
 print()
