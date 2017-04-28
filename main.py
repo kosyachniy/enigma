@@ -3,42 +3,12 @@
 #Использование любых символов - динамический алфавит
 #!При использовании особого словаря - дешифровка невозмона
 
-def enigma(text,key,alphabet,n,m):
-#Коммутационная панель
-	def panel(text):
-		for i in patch:
-			if i[0]==text:
-				return i[1]
-			elif i[1]==text:
-				return i[0]
-		return text
-
-#Роторы
-#!Автоматический поворот роторов
-	there=lambda word,shift: alphabet[(alphabet.index(word)+shift)%m]
-	here=lambda word,shift: alphabet[(alphabet.index(word)-shift)%m]
-
-	for i in range(n):
-#Обход роторов в одну сторону
-		word=text[i]
-		for j in key:
-			word=there(word,j)
-#Рефлектор
-		word=alphabet[m-1-alphabet.index(word)]
-#Обход роторов в обратную сторону
-		for j in key[::-1]:
-			word=here(word,j)
-		text[i]=panel(word)
-	return text
+from enigma import enigma
 
 #Создание словаря
 def alpha(text):
 #1234567890йцукенгшщзхъёфывапролджэячсмитьбю
-	text+='qwertyuiopasdfghjklzxcvbnm'
-	alphabet=list()
-	for i in text:
-		if not any(i==j for j in alphabet):
-			alphabet.append(i)
+	alphabet=list(i for i in set(j for j in text+'qwertyuiopasdfghjklzxcvbnm'))
 	alphabet.sort()
 	return tuple(alphabet)
 
@@ -57,7 +27,10 @@ alphabet=alpha(text)
 m=len(alphabet)
 text=list(text)
 
-text=enigma(text,key,alphabet,n,m)
+text=enigma(text,key,alphabet,n,m,patch)
+for i in text:
+	print(alphabet.index(i),end='')
+print()
 
 for i in text:
 	print(i,end='')
