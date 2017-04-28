@@ -1,6 +1,6 @@
 #Создание словаря
 def alpha(text):
-	text+='йцукенгшщзхъёфывапролджэячсмитьбюqwertyuiopasdfghjklzxcvbnm'
+	text+='1234567890йцукенгшщзхъёфывапролджэячсмитьбюqwertyuiopasdfghjklzxcvbnm'
 	alphabet=list()
 	for i in text:
 		if not any(i==j for j in alphabet):
@@ -30,10 +30,8 @@ def panel(text):
 	return text
 
 #Роторы
-def there(inp,shift):
-	return alphabet[(alphabet.index(inp)+shift)%len(alphabet)]
-def here(inp,shift):
-	return alphabet[(alphabet.index(inp)-shift)%len(alphabet)]
+there=lambda word,shift: alphabet[(alphabet.index(word)+shift)%m]
+here=lambda word,shift: alphabet[(alphabet.index(word)-shift)%m]
 
 for i in range(n):
 #Обход роторов в одну сторону
